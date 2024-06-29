@@ -3,12 +3,14 @@ import shutil
 from send2trash import send2trash
 from datetime import datetime, timedelta
 
-path = "C:/Users/KD/Downloads/"
+path = "C:/Users/User_name/Downloads/"
 
 list_files = os.listdir(path)
 
+#Edit the list of category as you want. Just remember to edit extensions' dictionary and sort function if you want to change it. Else this will work as well for general use cases.
 main_dirs = ["Images", "Videos", "Audios", "Executables", "Archives", "Documents", "Web Files", "Miscellaneous"]
 
+#here you can change/modify/add the extension types for each category.
 extensions = {
     "Images": ['.png', '.jpg', '.jpeg', '.gif', '.bmp', '.tiff', '.svg', '.ico', '.psd', '.ai', '.eps', '.raw'],
     "Videos": ['.mp4', '.avi', '.mov', '.mkv', '.wmv', '.flv', '.webm', '.m4v', '.mpg', '.mpeg', '.3gp', '.ogv'],
@@ -27,6 +29,10 @@ def create_dir():
     for x in range(0, len(main_dirs)):
         if not os.path.exists(path + main_dirs[x]):
             os.makedirs(path + main_dirs[x])
+
+'''This functions checks first the validity date of each file/directories inside the Downloads' folder. Checks if the file/directory is >60 days old. 
+Adjust the value 60 if you want to change how many days should it take before deleting stuffs. send2trash module is used to avoid permanent deletions.
+View bin for accidental deletions.'''
 
 
 def check_date_validity():
@@ -59,6 +65,9 @@ def sort_files():
         else:
             if file not in main_dirs:
                 shutil.move(path + file, path + f"{main_dirs[7]}/" + file)
+
+
+#second validation for files ignored for too long inside each category.
 
 
 def check_date_validity_2():

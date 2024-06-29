@@ -3,6 +3,7 @@ import shutil
 from send2trash import send2trash
 from datetime import datetime, timedelta
 
+#change the path of the Downloads folder to yours
 path = "C:/Users/User_name/Downloads/"
 
 list_files = os.listdir(path)
